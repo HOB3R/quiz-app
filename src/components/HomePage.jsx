@@ -215,6 +215,21 @@ const styles = `
     font-size: 1.75rem;
     color: white;
   }
+
+  .pwa-install-container {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+  }
+
+  @media (max-width: 768px) {
+    .pwa-install-container {
+      top: auto;
+      bottom: 16px;
+      right: 16px;
+    }
+  }
 `;
 
 const Badge = ({ icon: Icon, text, color }) => (
@@ -358,11 +373,6 @@ const HomePage = () => {
               </span>
             </button>
           </div>
-          <pwa-install
-            ref={pwaInstallRef}
-            manual-apple="false"
-            manual-chrome="false"
-          ></pwa-install>
         </div>
       ) : (
         <LeaderboardModal onClose={toggleLeaderboard} />
@@ -377,6 +387,13 @@ const HomePage = () => {
       <button onClick={toggleLeaderboard} className="leaderboard-toggle">
         <Award className="leaderboard-icon" />
       </button>
+      <div className="pwa-install-container">
+        <pwa-install
+          ref={pwaInstallRef}
+          manual-apple="false"
+          manual-chrome="false"
+        ></pwa-install>
+      </div>
     </div>
   );
 };
