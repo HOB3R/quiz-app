@@ -254,7 +254,11 @@ const HomePage = () => {
     const pwaInstall = pwaInstallRef.current;
     if (pwaInstall) {
       pwaInstall.addEventListener('pwa-install-available-event', () => {
-        pwaInstall.showDialog();
+        const hasShownPWAPrompt = sessionStorage.getItem('hasShownPWAPrompt');
+        if (!hasShownPWAPrompt) {
+          pwaInstall.showDialog();
+          sessionStorage.setItem('hasShownPWAPrompt', 'true');
+        }
       });
     }
   }, []);
