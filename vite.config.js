@@ -8,23 +8,13 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['pwa-512x512.png', 'favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      includeAssets: ['pwa-512x512.png'],
       manifest: {
         name: 'Quiz Time',
-        short_name: 'QuizTime',
-        description: 'Test your knowledge with Quiz Time!',
+        short_name: 'Quiz Time',
+        description: 'Test your knowledge with exciting quizzes!',
         theme_color: '#ffffff',
         icons: [
-          {
-            src: 'pwa-512x512.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          },
           {
             src: 'pwa-512x512.png',
             sizes: '512x512',

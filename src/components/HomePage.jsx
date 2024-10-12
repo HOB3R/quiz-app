@@ -254,7 +254,7 @@ const HomePage = () => {
     const pwaInstall = pwaInstallRef.current;
     if (pwaInstall) {
       pwaInstall.addEventListener('pwa-install-available-event', () => {
-        // Optional: Zeigen Sie hier eine Benachrichtigung oder ändern Sie den UI-Zustand
+        pwaInstall.showDialog();
       });
     }
   }, []);
@@ -356,8 +356,8 @@ const HomePage = () => {
           </div>
           <pwa-install
             ref={pwaInstallRef}
-            manual-apple="true"
-            manual-chrome="true"
+            manual-apple="false"
+            manual-chrome="false"
           ></pwa-install>
         </div>
       ) : (
