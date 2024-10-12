@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Zap, SkipForward, Heart, HelpCircle, Clock, Trophy, Volume2, VolumeX, Award } from 'lucide-react';
 import PropTypes from 'prop-types';
 import QuizFont from '../assets/Quiz.ttf';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import LeaderboardModal from './LeaderboardModal';
 
 const styles = `
@@ -248,6 +248,16 @@ const HomePage = () => {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const navigate = useNavigate();
+  const pwaInstallRef = useRef(null);
+
+  useEffect(() => {
+    const pwaInstall = pwaInstallRef.current;
+    if (pwaInstall) {
+      pwaInstall.addEventListener('pwa-install-available-event', () => {
+        // Optional: Zeigen Sie hier eine Benachrichtigung oder ändern Sie den UI-Zustand
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const audio = new Audio('/quiz.mp3');
@@ -344,6 +354,11 @@ const HomePage = () => {
               </span>
             </button>
           </div>
+          <pwa-install
+            ref={pwaInstallRef}
+            manual-apple="true"
+            manual-chrome="true"
+          ></pwa-install>
         </div>
       ) : (
         <LeaderboardModal onClose={toggleLeaderboard} />
